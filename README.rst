@@ -103,7 +103,7 @@ users/manager.py::
         secret=SECRET, lifetime_seconds=5, cookie_name='userAuthToken'
     )
 
-    fastapi_users_manager = FastAPIUsers(
+    fastapi_users_app = FastAPIUsers(
         get_user_manager,
         [jwt_authentication, cookie_authentication],
         User,
@@ -112,7 +112,7 @@ users/manager.py::
         UserDB,
     )
 
-    current_active_user = fastapi_users.current_user(active=True)
+    current_active_user = fastapi_users_app.current_user(active=True)
 
 
 main.py::
