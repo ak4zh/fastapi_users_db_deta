@@ -119,7 +119,7 @@ main.py::
 
     from fastapi import FastAPI
 
-    from users.manager import jwt_authentication, fastapi_users_app
+    from users.manager import cookie_authentication, jwt_authentication, fastapi_users_app
 
     app = FastAPI()
 
