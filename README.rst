@@ -68,11 +68,12 @@ users/manager.py::
 
     from typing import Optional
 
+    import deta
     from fastapi import Depends, Request
     from fastapi_users import BaseUserManager, FastAPIUsers
     from fastapi_users.authentication import JWTAuthentication, CookieAuthentication
-
     from fastapi_users_db_deta import DetaBaseUserDatabase
+
     from users.models import UserDB, UserCreate, UserUpdate, User
 
     SECRET = 'secret'
