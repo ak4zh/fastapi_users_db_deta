@@ -22,7 +22,9 @@ class DetaBaseUserDatabase(BaseUserDatabase[UD]):
     :param oauth_account_base: deta.Deta.AsyncBase() to store oauth accounts with user_id field
     """
 
-    def __init__(self, user_db_model: Type[UD], user_base: deta.AsyncBase, oauth_account_base: deta.AsyncBase):
+    def __init__(
+        self, user_db_model: Type[UD], user_base: deta.Deta.AsyncBase, oauth_account_base: deta.Deta.AsyncBase
+    ):
         super().__init__(user_db_model)
         self.user_base = user_base
         self.oauth_account_base = oauth_account_base
