@@ -44,6 +44,6 @@ setup(
     test_suite='tests',
     tests_require=test_requirements,
     url='https://github.com/ak4zh/fastapi_users_db_deta',
-    version='version='0.2.0'',
+    version='version='0.2.1'',
     zip_safe=False,
 )
