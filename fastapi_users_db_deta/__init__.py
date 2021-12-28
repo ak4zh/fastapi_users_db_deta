@@ -2,7 +2,7 @@
 
 __author__ = """Akash Agarwal"""
 __email__ = 'agwl.akash@gmail.com'
-__version__ = '0.2.0'
+__version__ = '__version__ = '0.2.0''
 
 from typing import Optional, Type
 
