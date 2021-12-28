@@ -1,3 +1,10 @@
-deta>=1.0.0
 fastapi-users>=8.1.2
 pydantic>=1.8.2
+aiohttp==3.8.1
+aiosignal==1.2.0
+async-timeout==4.0.2
+attrs==21.2.0
+deta==1.1.0a1
+frozenlist==1.2.0
+multidict==5.2.0
+yarl==1.7.2
