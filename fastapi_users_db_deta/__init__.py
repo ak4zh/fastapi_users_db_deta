@@ -36,16 +36,16 @@ class DetaBaseUserDatabase(BaseUserDatabase[UD]):
 
     async def get_by_email(self, email: str) -> Optional[UD]:
         """Get a single user by email."""
-        user = await self.user_base.fetch(query=dict(email=email)).items
+        user = (await self.user_base.fetch(query=dict(email=email))).items
         return self.user_db_model(**user[0]) if user else None
 
     async def get_by_oauth_account(self, oauth: str, account_id: str) -> Optional[UD]:
         """Get a single user by OAuth account id."""
         user = None
-        oauth_accounts = await self.oauth_account_base.fetch(query={
+        oauth_accounts = (await self.oauth_account_base.fetch(query={
                 "oauth_name": oauth,
                 "account_id": account_id,
-            }).items
+            })).items
         if oauth_accounts:
             user = await self.user_base.get(key=oauth_accounts[0]['user_id'])
         if not user:
@@ -56,9 +56,9 @@ class DetaBaseUserDatabase(BaseUserDatabase[UD]):
         if oauth_accounts and self.oauth_account_base:
             for oauth_account in oauth_accounts:
                 oauth_account['user_id'] = user_id
-                existing = await self.oauth_account_base.fetch(
+                existing = (await self.oauth_account_base.fetch(
                     query=dict(oauth_name=oauth_account['oauth_name'], account_id=oauth_account['account_id'])
-                ).items
+                )).items
                 await self.oauth_account_base.put(
                     oauth_account, key=existing[0]['key'] if existing else str(oauth_account['id'])
                 )
@@ -91,7 +91,7 @@ class DetaBaseUserDatabase(BaseUserDatabase[UD]):
         """Delete a user."""
         key = str(user.id)
         # delete all oauth accounts
-        oauth_accounts = await self.oauth_account_base.fetch(query=dict(user_id=key)).items
+        oauth_accounts = (await self.oauth_account_base.fetch(query=dict(user_id=key))).items
         for oauth_account in oauth_accounts:
             await self.oauth_account_base.delete(str(oauth_account.id))
         # delete the actual user
